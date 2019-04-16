@@ -1,6 +1,6 @@
-package com.thoughtmechanix.organization;
+package com.thoughtmechanix.specialroutes;
 
-import com.thoughtmechanix.organization.utils.UserContextFilter;
+import com.thoughtmechanix.specialroutes.utils.UserContextFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -12,7 +12,7 @@ import javax.servlet.Filter;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCircuitBreaker
-public class Application {
+public class SpecialRouteApplication {
 
     @Bean
     public Filter userContextFilter() {
@@ -21,6 +21,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SpecialRouteApplication.class, args);
     }
 }

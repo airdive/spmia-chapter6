@@ -1,4 +1,5 @@
-
+server:
+  port: 5556
 #Setting the logging levels for the service
 logging:
   level:
