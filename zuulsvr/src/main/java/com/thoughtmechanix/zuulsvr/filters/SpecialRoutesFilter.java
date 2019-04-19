@@ -4,6 +4,7 @@ package com.thoughtmechanix.zuulsvr.filters;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.thoughtmechanix.zuulsvr.model.AbTestingRoute;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -41,6 +42,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Component
+@Slf4j
 public class SpecialRoutesFilter extends ZuulFilter {
     private static final int FILTER_ORDER =  1;
     private static final boolean SHOULD_FILTER =true;
@@ -208,13 +210,14 @@ public class SpecialRoutesFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-
+        log.info("serviceId = "+filterUtils.getServiceId());
         AbTestingRoute abTestRoute = getAbRoutingInfo( filterUtils.getServiceId() );
 
         if (abTestRoute!=null && useSpecialRoute(abTestRoute)) {
             String route = buildRouteString(ctx.getRequest().getRequestURI(),
                     abTestRoute.getEndpoint(),
                     ctx.get("serviceId").toString());
+            log.info("zuul : route = "+route);
             forwardToSpecialRoute(route);
         }
 

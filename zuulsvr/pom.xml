@@ -52,6 +52,12 @@
       <version>4.5.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
   </dependencies>
 
   <!--Docker build Config-->
