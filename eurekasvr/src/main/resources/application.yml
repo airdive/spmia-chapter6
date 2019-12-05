@@ -4,12 +4,19 @@ server:
 
 eureka:
   client:
+    # 表示此实例是否注册到Eureka Server以供其他实例发现。在某些情况下，如果你不想自己的实例被发现，而只想发现其他实例，配置为 false 即可。
     registerWithEureka: false
+    # 表示客户端是否从 Eureka Server 获取实例注册信息。单节点设置false
     fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761
   server:
     waitTimeInMsWhenSyncEmpty: 30
-  serviceUrl:
-    defaultZone: http://localhost:8761  
+    #表示注册中心是否开启服务的自我保护能力。
+    enable-self-preservation: true
+    # 表示 Eureka Server 清理无效节点的频率，默认 60000 毫秒（60 秒）
+    eviction-interval-timer-in-ms: 60000
+
 
 #Setting logging levels
 logging:
